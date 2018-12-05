@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{index :: scriptIndex}">
+</head>
+<script type="text/javascript" th:src="@{/public/js/softList.js}"></script>
+<body>
+    <div th:replace="common/common.html :: topIndex(activeUri='softList.html')"></div>
+    <div class="mobile-menus">
+        <div class="swilper-main">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide " onclick="window.location.href='index.html'">首页</div>
+                    <div class="swiper-slide" onclick="window.location.href='articleList.html'">文章</div>
+                    <div class="swiper-slide" onclick="window.location.href='videoList.html'">视频</div>
+                    <div class="swiper-slide active" onclick="window.location.href='softList.html'">软件</div>
+                    <div class="swiper-slide" onclick="window.location.href='message.html'">留言</div>
+                    <div class="swiper-slide" onclick="window.location.href='about.html'">关于我们</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-container ">
+    <div class="layui-row jianju layui-hide-xs">
+        <span class="layui-breadcrumb">
+          <a href="">首页</a>
+          <a><cite>软件</cite></a>
+        </span>
+    </div>
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md8 ">
+
+            <div class="layui-card">
+                <div n class="layui-card-body ydl-catalog-main">
+                    <div class="category-item">
+                        <div class="category-item-title layui-hide-xs">分类:</div>
+                        <div class="category-item-list" id="fenleiVideo">
+                            <a href="javascript:" class="c-active" fenleiid="0">全部</a>
+                            <!-- <a href="#">手机APP</a>
+                             <a href="#">jquery插件</a>
+                             <a href="#">javascript</a>
+                             <a href="#">ui框架</a>
+                             <a href="#">开发软件</a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-order layui-hide-xs" id="paixuchaxun">
+                <a href="javascript:" class="order-active" paixuid="0">默认</a>
+                <a href="javascript:" paixuid="1">最热</a>
+                <a href="javascript:" paixuid="2">最新</a>
+
+            </div>
+
+            <div class="layui-card" style="overflow: hidden;padding-bottom: 30px;">
+                <div class="layui-card-body">
+                    <ul class="soft-list" id="soft-lists">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md4" th:replace="index::rightIndexTemplate">
+        </div>
+    </div>
+
+    <div class="footer-r">
+        <p>
+            © 2018-2022 xxxx 版权所有，保留所有权利。<br>版权声明：部分文章摘自互联网，如有侵权，麻烦告知删除，谢谢。
+        </p>
+    </div>
+</body>
+</html>

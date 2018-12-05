@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{index :: scriptIndex}">
+</head>
+<script type="text/javascript" th:src="@{/public/js/articeList.js}"></script>
+<body>
+<div th:replace="common/common.html :: topIndex(activeUri='articleList.html')"></div>
+
+<div class="layui-container ">
+    <div class="layui-row jianju layui-hide-xs">
+        <span class="layui-breadcrumb">
+          <a href="">首页</a>
+          <a><cite>文章</cite></a>
+        </span>
+    </div>
+    <div class="layui-row layui-col-space15" >
+        <div class="layui-col-md8" >
+            <div class="layui-card">
+                <div class="layui-card-body ydl-catalog-main">
+                    <div class="category-item">
+                        <div class="category-item-title layui-hide-xs">分类:</div>
+                        <div class="category-item-list" th:id="showAll">
+                            <a href="javascript:void(0)" class="c-active" fenleiid='0'>全部</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="article-order layui-hide-xs" th:id="paixuchaxun">
+                <a href="javascript:void(0)" class="order-active" paixuid="0">默认</a>
+                <a href="javascript:void(0)" paixuid="1">最热</a>
+                <a href="javascript:void(0)" paixuid="2">最新</a>
+            </div>
+            <div th:id="mainData">
+
+            </div>
+
+        </div>
+
+        <div class="layui-col-md4" th:replace="index::rightIndexTemplate">
+
+        </div>
+    </div>
+</div>
+
+<div class="footer-r">
+    <p>
+        © 2018-2022 xxxx 版权所有，保留所有权利。<br>版权声明：部分文章摘自互联网，如有侵权，麻烦告知删除，谢谢。
+    </p>
+</div>
+<script type="text/javascript" th:src="@{/public/layui/layui.all.js}"></script>
+<script type="text/javascript" th:src="@{/public/js/index.js}"></script>
+</body>
+
+</html>

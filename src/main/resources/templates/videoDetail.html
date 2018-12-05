@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{index :: scriptIndex}">
+</head>
+<style>
+    #vidojishu li:hover {
+        background: #93D1FF;
+    }
+
+    #vidojishu {
+        height: 100px;
+    }
+
+    #vidojishu li {
+        cursor: pointer;
+        width: 60px;
+        height: 50px;
+        float: left;
+        line-height: 50px;
+        text-align: center;
+    }
+    .myactive {
+        background: #93D1FF;
+    }
+</style>
+<script  type="text/javascript" th:src="@{/public/js/videoDetail.js}"></script>
+<script th:inline="javascript" >
+    var id= [[${#httpServletRequest.getParameter('id')}]];
+    initVideo(id);
+</script>
+<body>
+<div th:replace="common/common.html :: topIndex(activeUri='videoList.html')">
+</div>
+<div class="mobile-menus" >
+    <div class="swilper-main">
+        <div class="swiper-container">
+            <div class="swiper-wrapper" th:fragment="topDaohang">
+                <div class="swiper-slide active" onclick="window.location.href='index.html'">首页</div>
+                <div class="swiper-slide" onclick="window.location.href='articleList.html'">文章</div>
+                <div class="swiper-slide" onclick="window.location.href='videoList.html'">视频</div>
+                <div class="swiper-slide" onclick="window.location.href='softList.html'">软件</div>
+                <div class="swiper-slide" onclick="window.location.href='message.html'">留言</div>
+                <div class="swiper-slide" onclick="window.location.href='about.html'">关于我们</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="layui-container ">
+    <div class="layui-row jianju layui-hide-xs">
+        <span class="layui-breadcrumb">
+          <a href="">首页</a>
+          <a><cite>视频</cite></a>
+        </span>
+    </div>
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md8 ">
+            <div class="layui-card">
+                <div class="layui-card-body detail-box">
+                    <div id="videomainjieshao">
+
+                    </div>
+                    <div class="video-main-list">
+                        <div class="video-main-header">
+                            剧集列表
+                        </div>
+                        <div class="video-main-cente">
+                            <ul id="vidojishu">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-col-md4" th:replace="index::rightIndexTemplate">
+
+        </div>
+    </div>
+</div>
+<div class="footer-r">
+    <p>
+        © 2018-2022 xxxx 版权所有，保留所有权利。<br>版权声明：部分文章摘自互联网，如有侵权，麻烦告知删除，谢谢。
+    </p>
+</div>
+</body>
+</html>

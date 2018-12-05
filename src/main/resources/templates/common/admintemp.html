@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="layui-side-scroll" th:fragment="adminLeft">
+        <ul class="layui-nav layui-nav-tree menus-tree" lay-filter="test">
+            <li class="layui-nav-item layui-nav-itemed menus-item">
+                <a class="sms-yingyingx">
+                    <i class="layui-icon layui-icon-list"></i>
+                    首页
+                </a>
+                <dl class="layui-nav-child sys-nav-child">
+                    <dd>
+                        <a href="wrok.html" target="_blank">
+                            <i class="layui-icon layui-icon-console"></i>
+                            控制台
+                        </a>
+                    </dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item layui-nav-itemed menus-item">
+                <a class="sms-yingyingx">
+                    <i class="layui-icon layui-icon-list"></i>
+                    资源管理
+                </a>
+                <dl class="layui-nav-child sys-nav-child">
+                    <dd>
+                        <a href="user/index.html" target="_blank">
+                            <i class="layui-icon layui-icon-read"></i>
+                            文章管理
+                        </a>
+                    </dd>
+                    <dd>
+                        <a href="http://www.baidu.com" target="_blank">
+                            <i class="layui-icon layui-icon-survey"></i>
+                            软件管理
+                        </a>
+                    </dd>
+                    <dd>
+                        <a href="http://www.baidu.com" target="_blank">
+                            <i class="layui-icon layui-icon-video"></i>
+                            视频管理
+                        </a>
+                    </dd>
+                    <dd>
+                        <a href="http://www.baidu.com" target="_blank">
+                            <i class="layui-icon layui-icon-find-fill"></i>
+                            广告管理
+                        </a>
+                    </dd>
+                    <dd>
+                        <a href="http://www.baidu.com" target="_blank">
+                            <i class="layui-icon layui-icon-website"></i>
+                            分类管理
+                        </a>
+                    </dd>
+                    <dd>
+                        <a href="http://www.baidu.com" target="_blank">
+                            <i class="layui-icon layui-icon-notice"></i>
+                            标签管理
+                        </a>
+                    </dd>
+                </dl>
+            </li>
+
+            <li class="layui-nav-item layui-nav-itemed menus-item">
+                <a class="sms-yingyingx">
+                    <i class="layui-icon layui-icon-set-sm"></i>
+                    系统配置
+                </a>
+                <dl class="layui-nav-child sys-nav-child">
+                    <dd>
+                        <a th:href="@{/admin/user/index.html}" target="_blank">
+                            <i class="layui-icon layui-icon-username"></i>
+                            用户管理
+                        </a>
+                    </dd>
+                    <dd>
+                        <a href="http://www.baidu.com" target="_blank">
+                            <i class="layui-icon layui-icon-util"></i>
+                            站点配置
+                        </a>
+                    </dd>
+                    <dd>
+                        <a href="http://www.baidu.com" target="_blank">
+                            <i class="layui-icon layui-icon-app"></i>
+                            登录日志
+                        </a>
+                    </dd>
+                    <dd>
+                        <a href="http://www.baidu.com" target="_blank">
+                            <i class="layui-icon layui-icon-app"></i>
+                            文件管理
+                        </a>
+                    </dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+
+<table cellspacing="0" cellpadding="0" border="0" class="layui-table" lay-skin="line">
+    <thead>
+    <tr>
+        <th width="5%">
+            <input type="checkbox" lay-filter="allCheck" name="all" lay-skin="primary">
+        </th>
+        <th>
+            编号
+        </th>
+        <th>
+            用户名
+        </th>
+        <th>
+            密码
+        </th>
+        <th>
+            状态
+        </th>
+        <th width="20%">
+            操作
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${pages.records}">
+        <td>
+            <input type="checkbox" name="ids" value="1" th:value="${user.id}" lay-skin="primary" title="">
+        </td>
+        <td th:text="${user.id}">1</td>
+        <td th:text="${user.username}">Onions</td>
+        <td th:text="${user.password}">123</td>
+        <td>
+            <input type="checkbox" name="switch" lay-skin="switch"   lay-text="T|F"  th:checked="${user.status==1}?':checked':''" disabled/>
+        </td>
+        <td>
+            <button class="layui-btn layui-btn-xs layui-btn-warm" onclick="editor(this)"  th:userid="${user.id}">
+                <i class="layui-icon layui-icon-edit"></i>
+                编辑
+            </button>
+            <button class="layui-btn layui-btn-xs layui-btn-danger" onclick="deleteOne()">
+                <i class="layui-icon layui-icon-delete"></i>
+                删除
+            </button>
+        </td>
+    </tr>
+
+    <tr style="display:none;">
+        <td colspan="5">
+            <input type="hidden" id="count" name="count" value="50" th:value="${pages.total}"/>
+        </td>
+    </tr>
+    </tbody>
+</table>
+

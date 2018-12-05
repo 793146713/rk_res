@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--顶部--->
+<div class="layui-bg-blue header" th:fragment="topIndex">
+    <div class="layui-container r-pading ">
+        <div class="r-logo  ">
+            LOGO
+        </div>
+        <ul class="layui-nav r-nav layui-hide-xs">
+            <li class="layui-nav-item layui-this"
+                th:class="${activeUri=='index.html'?'layui-nav-item layui-this ':'layui-nav-item'}">
+                <a href="index.html">首页</a>
+            </li>
+            <li class="layui-nav-item "
+                th:class="${activeUri=='articleList.html'?'layui-nav-item layui-this ':'layui-nav-item'}">
+                <a href="articleList.html">文章</a>
+            </li>
+            <li class="layui-nav-item"
+                th:class="${activeUri=='videoList.html'?'layui-nav-item layui-this ':'layui-nav-item'}">
+                <a href="videoList.html">视频</a>
+            </li>
+            <li class="layui-nav-item"
+                th:class="${activeUri=='softList.html'?'layui-nav-item layui-this ':'layui-nav-item'}">
+                <a href="softList.html">软件</a>
+            </li>
+            <li class="layui-nav-item"
+                th:class="${activeUri=='message.html'?'layui-nav-item layui-this ':'layui-nav-item'}">
+                <a href="message.html">留言</a>
+            </li>
+            <li class="layui-nav-item"
+                th:class="${activeUri=='about.html'?'layui-nav-item layui-this ':'layui-nav-item'}">
+                <a href="about.html">关于我们</a>
+            </li>
+        </ul>
+        <div class="houtai">
+            <a href="admin/login.html" style="color: #fff;font-weight: bold;">后台管理</a>
+        </div>
+        <div class="layui-show-xs r-header-right" id="menus-go">
+            <i class="layui-icon">&#xe66b;</i>
+        </div>
+    </div>
+    <div class="layui-show-xs ydl-seacher">
+        <input type="search" class="ydl-seacher-input" placeholder="搜索"/>
+        <i class="layui-icon layui-icon-search ydl-seacher-btn"></i>
+    </div>
+</div>
+
+
+</body>
+</html>

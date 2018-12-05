@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="scriptIndex">
+    <meta charset="UTF-8">
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="keywords"/>
+    <title>登录</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/public/bootstrap/css/bootstrap.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/public/css/admin/login_admin.css}">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script type="text/javascript" th:src="@{/public/jquery/jquery-1.9.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/public/swiper/js/swiper.js}"></script>
+    <script type="text/javascript" th:src="@{/public/js/indexdata.js}"></script>
+    <script type="text/javascript" th:src="@{/public/layui/layui.js}"></script>
+    <script type="text/javascript" th:src="@{/public/layui/layui.all.js}"></script>
+    <script type="text/javascript" th:src="@{/public/js/index.js}"></script>
+    <link rel="stylesheet" th:href="@{/public/layui/css/layui.css}"/>
+    <link rel="stylesheet" th:href="@{/public/css/common.css}"/>
+    <link rel="stylesheet" th:href="@{/public/swiper/css/swiper.min.css}"/>
+
+    <script type="text/javascript" th:inline="javascript">
+        var mymsg = [[${msg}]];
+        mymsg = eval("'" + mymsg + "'"); // "我是unicode编码"
+        if (mymsg!="null"){
+            layer.msg(mymsg);
+        }
+        function onsubmitform() {
+            var index;
+            layui.use(['layer', 'form'], function () {
+                index = layer.load(0, {shade: false});
+            });
+            $.ajax({
+                url: "/sysUser/",
+                type: "post",
+                data: {"username": $("#username").val(), "password": $("#password").val()},
+                success: function (reslet) {
+                    layer.close(index);
+                    if (reslet.success === true) {
+                        location.href = "/admin/index.html";
+                    } else {
+                        $("#password").val("");
+                        layer.msg("账号或密码错误！");
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="login-content">
+    <div class="login-from">
+        <div class="header-title" th>
+            <h5 class="title-content">用户登录</h5>
+            <img title="登陆" class="hear-img" th:src="@{/public/images/head-img.jpg}"/>
+            <form action="#" type="post" onsubmit="return false">
+                <div class="input-content">
+                    <input class="user-name" id="username" name="username" type="text" placeholder="用户名">
+                </div>
+                <div class="input-content">
+
+                    <input class="user-name" id="password" name="password" type="password" placeholder="密码">
+                </div>
+                <div class="input-content" style="border: 0px;">
+                    <button onclick="onsubmitform();" class="btn btn-default btn-block" id="" type="submit">
+                        登录
+                    </button>
+                </div>
+                <div class="input-content" style="border: 0px;">
+                    <button style="background:#FF5722;color: #fff;"
+                            onclick="javascript:window.location.href='../index.html'" class="btn btn-default btn-block"
+                            id="submit_btn" type="submit">
+                        返回首页
+                    </button>
+                </div>
+                <div class="prompt">为了您更好的体验 <br>请使用<a href="http://w.x.baidu.com/alading/anquan_soft_down_ub/14744"
+                                                       target="_blank" class="special_color">谷歌浏览器</a>或者<a
+                        href="http://chrome.360.cn/" target="_blank" class="special_color">360极速浏览器</a></div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<div class="login-buttom">
+    <div class="cut-rule"></div>
+    <div class="copyright">Copyright ©2018&nbsp;湖南源动力科技有限公司</div>
+</div>
+
+</body>
+</html>

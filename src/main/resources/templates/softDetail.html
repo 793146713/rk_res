@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{index :: scriptIndex}">
+</head>
+<script type="text/javascript" th:inline="javascript">
+    $(function () {
+        var url="";
+        $.ajax({
+            url: "/resouceDownloadFile/getResouceById/" + [[${#httpServletRequest.getParameter('id')}]],
+            type: "get",
+            data: {},
+            success: function (relut) {
+                console.log(relut);
+                var html = "";
+                html += " <h1>" + relut.title + "</h1>\n" +
+                    "                    <div class=\"ydl-detail-info\">\n" +
+                    "                        <span class=\"ydl-yidong\">\n" +
+                    "                            <i class=\"layui-icon layui-icon-log\"></i> " + relut.addTime + "&nbsp;\n" +
+                    "                            <i class=\"layui-icon\">&#xe705;</i><span class=\"num\"> " + relut.clickCount + "</span>\n" +
+                    "                        </span>\n" +
+                    "                    </div>\n" +
+                    "                    <div class=\"detail-about_tips\">\n" +
+                    "                        " + relut.description + "\n" +
+                    "                    </div>\n" +
+                    "                    <div class=\"detail-body\">\n" +
+                    "                        <p>\n" +
+                    "                           " + relut.description + "\n" +
+                    "                        </p>\n" +
+                    "                    </div>";
+                $("#softDetailtop").html(html);
+                url=relut.resouceDownloadFile.url;
+                html = "";
+                html += " <a id='resouceDownloadFileid' class=\"link-btn\" href=\"javascript:\" >\n" +
+                    "                                    <i class=\"layui-icon  layui-icon-file-b iconfont icon-down\"></i>下载\n" +
+                    "                                </a>\n" +
+                    "                                <div class=\"icon-box\">\n" +
+                    "                                    <i class=\"layui-icon  layui-icon-download-circle icon-attach\"></i>\n" +
+                    "                                </div>\n" +
+                    "                      <div class=\"info\">\n" +
+                    "                           <h3>" + relut.resouceDownloadFile.fileName + "</h3>\n" +
+                    "                       <p>\n" +
+                    "                   <span>文件类型：" + relut.resouceDownloadFile.ext + "</span>\n" +
+                    "                                        <span>大小：" + relut.resouceDownloadFile.fileSize + "KB </span>\n" +
+                    "                  <span>下载：" + relut.clickCount + "次</span>\n" +
+                    "               <span>所需积分：" + relut.resouceDownloadFile.downloadCount + "</span>\n" +
+                    "          </p>\n" +
+                    "</div>";
+                $("#donwodfile").html(html);
+                $("#resouceDownloadFileid").click(function () {
+
+                    window.location.href=[[${#servletContext.contextPath} ]]+url;
+                })
+            }
+        })
+
+    });
+</script>
+<body>
+<div th:replace="common/common.html :: topIndex(activeUri='softList.html')"></div>
+<div class="mobile-menus">
+    <div class="swilper-main">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide " onclick="window.location.href='index.html'">首页</div>
+                <div class="swiper-slide" onclick="window.location.href='articleList.html'">文章</div>
+                <div class="swiper-slide" onclick="window.location.href='videoList.html'">视频</div>
+                <div class="swiper-slide" onclick="window.location.href='softList.html'">软件</div>
+                <div class="swiper-slide active" onclick="window.location.href='message.html'">留言</div>
+                <div class="swiper-slide" onclick="window.location.href='about.html'">关于我们</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="layui-container ">
+    <div class="layui-row jianju">
+        <span class="layui-breadcrumb">
+          <a href="">首页</a>
+          <a><cite>软件</cite></a>
+        </span>
+    </div>
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md8 ">
+            <div class="layui-card">
+                <div class="layui-card-body detail-box">
+                    <div id="softDetailtop">
+
+                    </div>
+                    <!--  <h1>腾讯游戏盒子2013官网页面html代码</h1>
+                      <div class="ydl-detail-info">
+                          <span class="ydl-yidong">
+                              <i class="layui-icon layui-icon-log"></i> 2018-09-26&nbsp;
+                              <i class="layui-icon">&#xe705;</i><span class="num"> 66</span>
+                          </span>
+                      </div>
+                      <div class="detail-about_tips">
+                          腾讯游戏盒子是由腾讯自主研发的一款专为网页游戏用户定制的网页游戏辅助工具，具有智能加速、防掉线、帐号多开、全屏等特点。腾讯游戏盒子官网页面也非常简单明了，这也是目前很多简单介绍型网站所采用的风格。页面下半部分的圆形图标使用了
+                          CSS3 transform 旋转属性，当鼠标…
+                      </div>
+                      <div class="detail-body">
+                          <p>
+                              腾讯游戏盒子是由腾讯自主研发的一款专为网页游戏用户定制的网页游戏辅助工具，具有智能加速、防掉线、帐号多开、全屏等特点。
+                          </p>
+                          <p>
+                              腾讯游戏盒子官网页面也非常简单明了，这也是目前很多简单介绍型网站所采用的风格。页面下半部分的圆形图标使用了 CSS3 transform 旋转属性，当鼠标移动到上面时会顺时针旋转 20
+                              度，但 IE6 – IE9 不支持该属性，所以没有效果。
+                          </p>
+                      </div>-->
+                    <div class="attach-list">
+                        <h2 class="slide-tit">
+                            <span>附件下载</span>
+                        </h2>
+                        <ul>
+                            <li id="donwodfile">
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="layui-col-md4" th:replace="index::rightIndexTemplate"></div>
+    </div>
+</div>
+
+<div class="footer-r">
+    <p>
+        © 2018-2022 xxxx 版权所有，保留所有权利。<br>版权声明：部分文章摘自互联网，如有侵权，麻烦告知删除，谢谢。
+    </p>
+</div>
+</body>
+</html>

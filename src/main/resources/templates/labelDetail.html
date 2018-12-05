@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <script type="text/javascript" th:src="@{/public/jquery/jquery-1.9.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/public/swiper/js/swiper.js}"></script>
+    <script type="text/javascript" th:src="@{/public/js/indexdata.js}"></script>
+    <script type="text/javascript" th:src="@{/public/layui/layui.js}"></script>
+    <link rel="stylesheet" th:href="@{/public/layui/css/layui.css}"/>
+    <link rel="stylesheet" th:href="@{/public/css/common.css}"/>
+    <link rel="stylesheet" th:href="@{/public/swiper/css/swiper.min.css}"/>
+    <script th:inline="javascript">
+        $(function () {
+            var html = "";
+            $.ajax({
+                url: "/resous/getResousByBiaoqian/" + [[${#httpServletRequest.getParameter('id')}]],
+                type: "get",
+                data: {},
+                success: function (result) {
+                    console.log(result)
+                    if (result == "null") {
+                        html = "暂无数据！";
+                    } else {
+                        $.each(result, function (index, item) {
+                            html += "<li class='content-item'>" +
+                                "<div class='layui-col-md4 left'>" +
+                                "<img src='" + item.thumbnailImg + "'>" +
+                                "</div>" +
+                                "<div class='layui-col-md8 info'>" +
+                                "<h2><a class='zidingyi-badge'>" + item.resouceCatalog.name + "</a><a href='articleDetail.html?id=" + item.id + "'>" + item.title + "</a></h2>" +
+                                "<p class='summary'>" + item.summary + "</p>" +
+                                "<div class='meta'>" +
+                                "<div class='meta-left'>" +
+                                "<a>" +
+                                "<i class='layui-icon layui-icon-username'></i>" + item.author + "</a>" +
+                                "</div>" +
+                                "<div  class='meta-right'>" +
+                                "<a><i class='layui-icon'>" + "</i><span class='num'>" + item.clickCount + "</span></a>" +
+                                "<span><i class='layui-icon layui-icon-log'></i>" + item.addTime + "</span>" +
+                                "</div>" +
+                                "</div></div></li>";
+                        });
+                    }
+                    $("#ydl-cardss").html(html);
+                }
+            });
+        })
+
+    </script>
+</head>
+
+<body>
+<div th:replace="~{common/common.html::topIndex(activeUri='index.html')}"></div>
+<div class="mobile-menus">
+    <div class="swilper-main">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide " onclick="window.location.href='index.html'">首页</div>
+                <div class="swiper-slide active" onclick="window.location.href='articleList.html'">文章</div>
+                <div class="swiper-slide" onclick="window.location.href='videoList.html'">视频</div>
+                <div class="swiper-slide" onclick="window.location.href='softList.html'">软件</div>
+                <div class="swiper-slide" onclick="window.location.href='message.html'">留言</div>
+                <div class="swiper-slide" onclick="window.location.href='about.html'">关于我们</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layui-container ">
+    <div class="layui-row jianju">
+        <span class="layui-breadcrumb">
+          <a href="">首页</a>
+          <a><cite>文章</cite></a>
+        </span>
+    </div>
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md8 ">
+            <div class="layui-card">
+                <div class="layui-card-body detail-box">
+                    <div class="layui-card layui-hide-xs">
+                        <div class="layui-card-body tags" id="tagsss">
+
+                        </div>
+                    </div>
+                    <div class="layui-card-body ydl-card" id="ydl-cardss">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="layui-col-md4" th:replace="index :: rightIndexTemplate"></div>
+
+    </div>
+</div>
+
+<div class="footer-r">
+    <p>
+        © 2018-2022 xxxx 版权所有，保留所有权利。<br>版权声明：部分文章摘自互联网，如有侵权，麻烦告知删除，谢谢。
+    </p>
+</div>
+</body>
+</html>

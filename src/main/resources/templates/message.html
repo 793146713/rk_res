@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{index :: scriptIndex}">
+</head>
+
+<body>
+<div th:replace="common/common.html :: topIndex(activeUri='message.html')"></div>
+
+<div class="mobile-menus">
+    <div class="swilper-main">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide " onclick="window.location.href='index.html'">首页</div>
+                <div class="swiper-slide" onclick="window.location.href='articleList.html'">文章</div>
+                <div class="swiper-slide" onclick="window.location.href='videoList.html'">视频</div>
+                <div class="swiper-slide" onclick="window.location.href='softList.html'">软件</div>
+                <div class="swiper-slide active" onclick="window.location.href='message.html'">留言</div>
+                <div class="swiper-slide" onclick="window.location.href='about.html'">关于我们</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="layui-container ">
+    <div class="layui-row jianju">
+        <span class="layui-breadcrumb">
+          <a href="">首页</a>
+          <a><cite>留言区</cite></a>
+        </span>
+    </div>
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md8 ">
+            <div class="layui-card" style="overflow: hidden;">
+                <div class="layui-card-body">
+                    <textarea id="message" style="display: none;"></textarea>
+                    <button id="submitText" class="layui-btn layui-btn-danger r-btn layui-submit layui-unselect">提交留言
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-col-md4" th:replace="index::rightIndexTemplate">
+        </div>
+    </div>
+</div>
+
+<div class="footer-r">
+    <p>
+        © 2018-2022 xxxx 版权所有，保留所有权利。<br>版权声明：部分文章摘自互联网，如有侵权，麻烦告知删除，谢谢。
+    </p>
+</div>
+<script>
+    $(function () {
+        var layedit;
+        var build;
+        layui.use('layedit', function () {
+            layedit = layui.layedit;
+            layedit.set({
+                uploadImage: {
+                    url: '/message/doUploadPic',
+                    type: 'post'
+                }
+            });
+            build = layedit.build('message', {
+                tool: [
+                    'strong' //加粗
+                    , 'italic' //斜体
+                    , 'underline' //下划线
+                    , 'del' //删除线
+                    , '|' //分割线
+                    , 'left' //左对齐
+                    , 'center' //居中对齐
+                    , 'right' //右对齐
+                    , 'link' //超链接
+                    , 'unlink' //清除链接
+                    , 'face' //表情
+                    , 'image' //插入图片
+                    // , 'help' //帮助
+                ],
+                height: 450//设置高度
+            }); //建立编辑器
+
+        });
+
+        $("#submitText").click(function () {
+            var content = layedit.getContent(build);
+            layer.alert('确认提交?', {
+                skin: 'layui-layer-molv' //样式类名  自定义样式
+                ,closeBtn: 1    // 是否显示关闭按钮
+                ,anim: 4 //动画类型
+                ,btn: ['确认','取消'] //按钮
+                ,icon: 6    // icon
+                ,yes:function(){
+                    if (content.length < 20||content=="") {
+                        layer.msg("留言必须大于20个字符哦！")
+                    } else {
+                        $.ajax({
+                            url: "/message/InsertMessage",
+                            type: "put",
+                            data: {"message": content},
+                            success: function (data) {
+                                if (data.success == true) {
+                                    layer.confirm(data.msg, {icon: 6, title: '提示'}, function (index) {
+                                        layer.close(index);
+                                    });
+                                    layedit.build('message', {});
+                                } else {
+                                    layer.confirm(data.msg, {icon: 5, title: '提示'}, function (index) {
+                                        layer.close(index);
+                                    });
+                                }
+                            }
+                        })
+                    }
+                }
+                ,btn2:function(){
+                    layer.msg('取消成功！')
+             }});
+
+        });
+    })
+
+</script>
+</body>
+
+</html>

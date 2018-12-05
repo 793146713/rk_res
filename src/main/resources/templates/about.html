@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{index :: scriptIndex}">
+</head>
+<script type="text/javascript" th:src="@{/public/js/videoList.js}"></script>
+<body>
+<div th:replace="common/common.html :: topIndex(activeUri='about.html')">
+</div>
+
+<div class="mobile-menus">
+    <div class="swilper-main">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide " onclick="window.location.href='index.html'">首页</div>
+                <div class="swiper-slide" onclick="window.location.href='articleList.html'">文章</div>
+                <div class="swiper-slide" onclick="window.location.href='videoList.html'">视频</div>
+                <div class="swiper-slide" onclick="window.location.href='softList.html'">软件</div>
+                <div class="swiper-slide" onclick="window.location.href='message.html'">留言</div>
+                <div class="swiper-slide active" onclick="window.location.href='about.html'">关于我们</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="layui-container ">
+    <div class="layui-row jianju">
+            <span class="layui-breadcrumb">
+              <a href="">首页</a>
+              <a><cite>关于我们</cite></a>
+            </span>
+    </div>
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md8  ">
+            <div class="layui-card" style="overflow: hidden;margin-bottom: 10px!important;">
+
+                <div class="layui-card-body">
+                    <h1>个人签名</h1>
+                </div>
+                <hr class="layui-bg-green"/>
+                <div class="about-main">
+                    每一个人的成功之路或许都不尽相同，但我相信，成功都需要每一位想成功的人去努力、去奋斗，而每一条成功之路，都是充满坎坷的，只有那些坚信自己目标，不断努力、不断奋斗的人，才能取得最终的成功。但有一点我始终坚信，那就是，当你能把自己感动得哭了的时候，你就成功了！
+                </div>
+                <div class="about-main" style="background: #fff;">
+                    <h3><strong>给我打赏</strong></h3>
+                    <hr class="layui-bg-gray"/>
+                    <img th:title="打赏" th:src="@{https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1214823549,505091549&fm=58&bpow=583&bpoh=600}" style="margin: 5px;width: 300px;"/>
+                </div>
+                <div class="about-main" style="background: #fff;">
+                    <h3><strong>关注我的二维码</strong></h3>
+                    <hr class="layui-bg-gray"/>
+                    <img th:title="打赏" th:src="@{https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1214823549,505091549&fm=58&bpow=583&bpoh=600}" style="margin: 5px;width: 300px;"/>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="layui-col-md4" th:replace="index::rightIndexTemplate">
+        </div>
+    </div>
+</div>
+
+<div class="footer-r">
+    <p>
+        © 2018-2022 xxxx 版权所有，保留所有权利。<br>版权声明：部分文章摘自互联网，如有侵权，麻烦告知删除，谢谢。
+    </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>软咖权限管理系统</title>
+    <link rel="stylesheet" th:href="@{/public/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/public/css/admin/common.css}"/>
+    <script type="text/javascript" th:src="@{/public/jquery/jquery-1.9.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/public/artDialog/jquery.artDialog.js(skin=blue)}"></script>
+    <script type="text/javascript" th:src="@{/public/artDialog/plugins/iframeTools.js}"></script>
+</head>
+<script type="text/javascript" th:inline="javascript">
+    $(function () {
+        $.ajax({
+            url: "/sysRoleUser/getabout",
+            type: "get",
+            success: function (ret) {
+                $("#siteName").html(ret.siteName);
+            }
+        });
+    })
+</script>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin ">
+    <div class="layui-header">
+        <div class="layui-logo" id="siteName"></div>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item ssm-menus">
+                <a href="javascript:">
+                    <img  th:src="${session.loginUser.headerImg}" class="layui-nav-img">
+                      [[${session.loginUser.username}]]
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a  target="mainframe">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item ssm-menus"><a href="login.html">退出</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black" style="bottom: 0px;border: solid 1px #eee;">
+       <div th:replace="/common/admintemp.html :: adminLeft">
+
+       </div>
+    </div>
+
+    <div class="layui-body" style="bottom: 0px;">
+        <div class="layui-tab layui-tab-card" lay-filter="tab-menus" style="margin: 0px!important;"
+             lay-allowClose="true">
+            <ul class="layui-tab-title" style=" z-index: 9999;">
+                <li class="layui-this home-tab" lay-id="1538417343045" data-text="控制台">
+                    <i class="layui-icon layui-icon-console"></i>
+                    &nbsp;控制台
+                </li>
+
+            </ul>
+            <div class="layui-tab-content clildFrame">
+                <div class="layui-tab-item layui-show">
+                    <iframe class="main-iframe" name="mainframe" src="wrok.html"></iframe>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script th:src="@{/public/layui/layui.all.js}"></script>
+<script th:src="@{/public/js/admin/index.js}"></script>
+</body>
+</html>
+      

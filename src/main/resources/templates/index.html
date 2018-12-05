@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="scriptIndex">
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="keywords"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <script type="text/javascript" th:src="@{/public/jquery/jquery-1.9.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/public/swiper/js/swiper.js}"></script>
+    <script type="text/javascript" th:src="@{/public/js/indexdata.js}"></script>
+    <script type="text/javascript" th:src="@{/public/layui/layui.js}"></script>
+    <script type="text/javascript" th:src="@{/public/layui/layui.all.js}"></script>
+    <script type="text/javascript" th:src="@{/public/js/index.js}"></script>
+    <link rel="stylesheet" th:href="@{/public/layui/css/layui.css}"/>
+    <link rel="stylesheet" th:href="@{/public/css/common.css}"/>
+    <link rel="stylesheet" th:href="@{/public/swiper/css/swiper.min.css}"/>
+
+</head>
+<body>
+<div th:replace="common/common.html :: topIndex(activeUri='index.html')"></div>
+
+<div class="layui-container ">
+    <div class="layui-container ydl-yuyin layui-anim layui-anim-fadein">
+        <span class="quotetitle layui-unselect">每日语录：</span>
+        <i id="color-xiaolian" class="layui-icon layui-icon-face-smile layui-unselect"></i>
+        <a>亲爱的祖国，生日快乐！——Valerieee</a>
+    </div>
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md8 ">
+
+            <div class="layui-carousel" id="brand" lay-filter="test1">
+                <div carousel-item id="guanggao">
+                    <!-- 广告-->
+                    <div><img src="https://img.zcool.cn/community/0193875baeddc2a801213deaa9e20d.jpg"/></div>
+                    <div><img src="https://img.zcool.cn/community/010df55baee204a801213dea409d01.png"/></div>
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    精选推荐
+                </div>
+                <div class="layui-card-body ydl-card">
+                    <ul class="content-main">  <!--流加载推荐-->
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md4" th:fragment="rightIndexTemplate">
+            <div class="layui-card layui-hide-xs">
+                <div class="layui-card-body">
+                    <form action="/search" method="get">
+                        <div class="layui-inline">
+                            <input class="layui-input" name="keyword" autocomplete="off" placeholder="关键词"
+                                   lay-verify="required" required="">
+                        </div>
+                        <button class="layui-btn" type="submit">搜索</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="layui-card layui-hide-xs">
+                <div class="layui-card-header">
+                    热门标签
+                </div>
+                <div class="layui-card-body tags" id="fenyeleibie" th:fragment="fenyeleibie">
+
+                </div>
+            </div>
+            <div class="layui-card layui-hide-xs">
+                <div class="layui-card-header ms-top">
+                    <ul class="hd" id="tab" th:fragment="paihang">
+                        <li class="active"><a href="javascript:" onclick="paihang(1)">点击排行</a></li>
+                        <li><a href="javascript:" onclick="paihang(2)">最新文章</a></li>
+                        <li><a href="javascript:" onclick="paihang(3)">站长推荐</a></li>
+                    </ul>
+                </div>
+                <div class="layui-card-body">
+                    <ul class="news-list">
+                        <!--ajax替换-->
+                    </ul>
+                </div>
+
+            </div>
+
+
+            <div class="layui-card layui-hide-xs">
+
+                <div class="layui-card-header ">
+                    推荐视频
+                </div>
+                <div class="layui-card-body">
+                    <ul class="voide-list" th:fragment="tuijianVideo">
+                        <!--<li>
+                            <a href="#" title="乐山大佛闭眼事件 惊天骇闻大..">
+                                <img src="http://www.miniblogs.club/upload/2018/_s_20180905111719436.jpg"
+                                     title="乐山大佛闭眼事件 惊天骇闻大..">
+                                <b>乐山大佛闭眼事件 惊天骇闻大..</b>
+                            </a>
+                            <p>
+                                <span class="tutime">
+                                    <i class="layui-icon layui-icon-log"></i>
+                                    2018-09-05
+                                </span>
+                            </p>
+                        </li>-->
+
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="layui-card layui-hide-xs">
+                <div class="layui-card-header">
+                    友情链接
+                </div>
+                <div class="layui-card-body" id="tuijian" th:fragment="youqing">
+                    <a href="#" target="_blank">博客</a>
+                    <a href="#" target="_blank">博客</a>
+                    <a href="#" target="_blank">博客</a>
+                    <a href="#" target="_blank">博客</a>
+                    <a href="#" target="_blank">博客</a>
+                    <a href="#" target="_blank">博客</a>
+                    <a href="#" target="_blank">博客</a>
+                    <a href="#" target="_blank">博客</a>
+                    <a href="#" target="_blank">博客</a>
+                    <a href="#" target="_blank">博客</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="footer-r">
+    <p>
+        © 2018-2022 xxxx 版权所有，保留所有权利。<br>版权声明：部分文章摘自互联网，如有侵权，麻烦告知删除，谢谢。
+    </p>
+</div>
+
+</body>
+
+</html>

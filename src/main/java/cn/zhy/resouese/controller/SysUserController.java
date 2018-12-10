@@ -21,8 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * 前端控制器
- *
+ * 前端控
  * @author admin
  * @since 2018-11-09
  */
@@ -56,7 +55,7 @@ public class SysUserController {
       String county = (String) maps.get("county");
       String isp = (String) maps.get("isp");
       addresses = country + city + county + isp;
-      //      System.out.println(country + city + county + isp);
+      //System.out.println(country + city + county + isp);
       String content =
           sysUser1.getUsername()
               + "用户在"

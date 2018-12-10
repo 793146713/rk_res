@@ -106,9 +106,7 @@ public class SysUserController {
 
   @RequestMapping("/add")
   public Object addSysUser(SysUser sysUser,HttpServletRequest request) {
-
     System.out.println(sysUser.getSysRole());
-
     try {
       if (sysUser.getId() != null) {
         sysUserService.updateById(sysUser);
@@ -121,7 +119,7 @@ public class SysUserController {
     }
     //添加角色
       for (SysRole sysRole : sysUser.getSysRole()) {
-          System.out.println(sysRole);
+          System.out.println(sysRole.getId());
           sysRole.getId();
          /* SysRoleUser()
           sysRoleUserService.insert()*/

@@ -2,7 +2,6 @@ spring:
   mvc:
     favicon:
       enabled: true #关闭叶子图标
-
   jackson:
     date-format: yyyy-MM-dd #如果使用字符串表示，用这行设置格式
     timezone: GMT+8
@@ -35,7 +34,6 @@ mybatis-plus:
   #  refresh-mapper: true
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
-#logging
 logging:
   level: debug
   level.cn.zhy.resouese.mapper: DEBUG

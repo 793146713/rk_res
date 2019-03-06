@@ -103,12 +103,11 @@ $(function () {
         type: "get",
         data: {},
         success: function (data) {
-
             var html = "";
             $.each(data, function (index, items) {
                 $.each(items.resouceVideo, function (index, item) {
                     html += "<li>\n" +
-                        "<a href='" + item.url + "' title='" + item.title + "'>" +
+                        "<a href='videoDetail.html?tuId=" + item.id + "' title='" + item.title + "'>" +
                         "<img src='" + items.thumbnailImg + "'" +
                         " title='" + item.title + "'>" +
                         "<b>" + item.title + "</b>" +

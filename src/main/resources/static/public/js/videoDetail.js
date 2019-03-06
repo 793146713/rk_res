@@ -1,9 +1,9 @@
 
 var id;
-function initVideo(id) {
+function initVideo(id,url) {
     this.id= id;
     $.ajax({
-        url: "/video/getVideoByid/" + id,
+        url: url + id,
         type: "get",
         data: {},
         success: function (result) {

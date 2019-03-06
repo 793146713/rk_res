@@ -19,19 +19,25 @@
         line-height: 50px;
         text-align: center;
     }
+
     .myactive {
         background: #93D1FF;
     }
 </style>
-<script  type="text/javascript" th:src="@{/public/js/videoDetail.js}"></script>
-<script th:inline="javascript" >
-    var id= [[${#httpServletRequest.getParameter('id')}]];
-    initVideo(id);
+<script type="text/javascript" th:src="@{/public/js/videoDetail.js}"></script>
+<script th:inline="javascript">
+    var id = [[${#httpServletRequest.getParameter('id')}]];
+    if (id === null) {
+        id = [[${#httpServletRequest.getParameter('tuId')}]];
+        initVideo(id, "/video/getVideoByTuJian/");
+    } else {
+        initVideo(id, "/video/getVideoByid/");
+    }
 </script>
 <body>
 <div th:replace="common/common.html :: topIndex(activeUri='videoList.html')">
 </div>
-<div class="mobile-menus" >
+<div class="mobile-menus">
     <div class="swilper-main">
         <div class="swiper-container">
             <div class="swiper-wrapper" th:fragment="topDaohang">
